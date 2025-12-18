@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator, FlatList, Dimensions } from 'react-native'
 const data = require('../../assets/data/products.json')
+
+import ProductList from './ProductList'
+var { width, height } = Dimensions.get("window");
 const ProductContainer = () => {
     const [products, setProducts] = useState([])
 
@@ -16,14 +19,36 @@ const ProductContainer = () => {
             <Text>Product Container</Text>
             <View style={{ marginTop: 200 }} >
                 <FlatList
-                    horizontal
+
+                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    numColumns={2}
                     data={products}
-                    renderItem={({ item }) => <Text>{item.brand}</Text>}
+
+                    renderItem={({ item }) => <ProductList key={item.id} item={item} />}
                     keyExtractor={item => item.name}
                 />
             </View>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexWrap: "wrap",
+        backgroundColor: "gainsboro",
+    },
+    listContainer: {
+        height: height,
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        backgroundColor: "gainsboro",
+    },
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+});
 
 export default ProductContainer;
