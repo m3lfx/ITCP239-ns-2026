@@ -3,13 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import ProductContainer from './Screeens/Product/ProductContainer';
 import Header from './Shared/Header';
 import { NavigationContainer } from '@react-navigation/native'
+import Main from './Navigators/Main';
+
 export default function App() {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <Header />
-        <ProductContainer />
-      </View>
+
+      <Header />
+      {/* <ProductContainer /> */}
+      <Main />
+
     </NavigationContainer>
   );
 }
