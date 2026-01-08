@@ -1,34 +1,122 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ActivityIndicator, FlatList, Dimensions } from 'react-native'
-const data = require('../../assets/data/products.json')
-
+import { View, StyleSheet, FlatList, ActivityIndicator, Dimensions, ScrollView } from 'react-native'
+import { Surface, Text, TextInput, Searchbar } from 'react-native-paper';
+import { Ionicons } from "@expo/vector-icons";
 import ProductList from './ProductList'
-var { width, height } = Dimensions.get("window");
+import SearchedProduct from "./SearchedProduct";
+import Banner from "../../Shared/Banner";
+import CategoryFilter from "./CategoryFilter";
+
+
+const data = require('../../assets/data/products.json')
+const productCategories = require('../../assets/data/categories.json')
+var { height, width } = Dimensions.get('window')
 const ProductContainer = () => {
+
     const [products, setProducts] = useState([])
+    const [productsFiltered, setProductsFiltered] = useState([]);
+    const [focus, setFocus] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [active, setActive] = useState([]);
+    const [initialState, setInitialState] = useState([])
+    const [productsCtg, setProductsCtg] = useState([])
+    const [keyword, setKeyword] = useState('')
 
     useEffect(() => {
         setProducts(data);
+        setProductsFiltered(data);
+        setFocus(false);
+        setCategories(productCategories)
+        setActive(-1)
+        setInitialState(data);
+        setProductsCtg(data)
 
         return () => {
             setProducts([])
+            setProductsFiltered([]);
+            setFocus();
+            setCategories([])
+            setActive()
+            setInitialState();
         }
     }, [])
+
+    const searchProduct = (text) => {
+        setProductsFiltered(
+            products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
+        )
+    }
+    const openList = () => {
+        setFocus(true);
+    }
+
+    const onBlur = () => {
+        setFocus(false);
+    }
+
+    const changeCtg = (ctg) => {
+        {
+            ctg === "all"
+                ? [setProductsCtg(initialState), setActive(true)]
+                : [
+                    setProductsCtg(
+                        products.filter((i) => i.category.$oid === ctg),
+                        setActive(true)
+                    ),
+                ];
+        }
+    };
+
     return (
-        <View>
-            <Text>Product Container</Text>
-            <View style={{ marginTop: 200 }} >
-                <FlatList
+        <Surface width="100%" style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                    columnWrapperStyle={{ justifyContent: 'space-between' }}
-                    numColumns={2}
-                    data={products}
+            <Searchbar
+                placeholder="Search"
+                onChangeText={(text) => [searchProduct(text), setKeyword(text), setFocus(true)]}
+                value={keyword}
 
-                    renderItem={({ item }) => <ProductList key={item.id} item={item} />}
-                    keyExtractor={item => item.name}
+                onClearIconPress={onBlur}
+
+            />
+            {focus === true ? (
+                <SearchedProduct
+                    productsFiltered={productsFiltered}
                 />
-            </View>
-        </View>
+            ) : (
+
+                <ScrollView>
+                    <View>
+                        <Banner />
+                    </View>
+                    <View >
+                        <CategoryFilter
+                            categories={categories}
+                            categoryFilter={changeCtg}
+                            productsCtg={productsCtg}
+                            active={active}
+                            setActive={setActive}
+                        />
+                    </View>
+                    {productsCtg.length > 0 ? (
+                        <View style={styles.listContainer}>
+                            {productsCtg.map((item) => {
+                                return (
+                                    <ProductList
+
+                                        key={item.id}
+                                        item={item}
+                                    />
+                                )
+                            })}
+                        </View>
+                    ) : (
+                        <View style={[styles.center, { height: height / 2 }]}>
+                            <Text>No products found</Text>
+                        </View>
+                    )}
+                </ScrollView>
+            )}
+        </Surface>
     )
 }
 
