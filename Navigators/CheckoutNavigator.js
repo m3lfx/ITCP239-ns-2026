@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 // Screens
 import Checkout from '../Screeens/Checkout/Checkout';
 import Payment from '../Screeens/Checkout/Payment';
-// import Confirm from '../Screens/Checkout/Confirm';
+import Confirm from '../Screeens/Checkout/Confirm';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,7 +13,7 @@ function MyTabs() {
         <Tab.Navigator>
             <Tab.Screen name="Shipping" component={Checkout} />
             <Tab.Screen name="Payment" component={Payment} />
-            {/* <Tab.Screen name="Confirm" component={Confirm} /> */}
+            <Tab.Screen name="Confirm" component={Confirm} />
         </Tab.Navigator>
     );
 }

@@ -4,6 +4,7 @@ import { View } from "react-native";
 
 import HomeNavigator from "./HomeNavigator";
 import CartNavigator from "./CartNavigator";
+import UserNavigator from "./UserNavigator";
 import { Ionicons } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
@@ -73,7 +74,7 @@ const Main = () => {
             />
             <Tab.Screen
                 name="User"
-                component={HomeNavigator}
+                component={UserNavigator}
                 options={{
                     tabBarIcon: ({ color }) => {
                         return <Ionicons
