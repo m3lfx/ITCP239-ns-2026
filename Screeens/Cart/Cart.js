@@ -4,10 +4,11 @@ import { Text, View, TouchableHighlight, StyleSheet, Dimensions, TouchableOpacit
 
 
 import { useNavigation } from '@react-navigation/native';
-import Icon from "react-native-vector-icons/FontAwesome";
+
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { removeFromCart, clearCart } from '../../Redux/Actions/cartActions'
 import { Surface, Divider, Avatar, Button } from 'react-native-paper';
+import { Ionicons } from "@expo/vector-icons";
 var { height, width } = Dimensions.get("window");
 
 const Cart = () => {
@@ -48,7 +49,7 @@ const Cart = () => {
         >
             <Surface alignItems="center" style={styles.hiddenButton} >
                 <View >
-                    <Icon name="trash" color={"white"} size={30} bg="red" />
+                    <Ionicons name="trash" color={"white"} size={30} bg="red" />
                     <Text color="white" fontSize="xs" fontWeight="medium">
                         Delete
                     </Text>
@@ -94,7 +95,7 @@ const Cart = () => {
                     <Button
                         alignItems="center"
                         buttonColor="green"
-                    // onPress={() => navigation.navigate('Checkout')} 
+                        onPress={() => navigation.navigate('Checkout')}
                     >Check Out</Button>
                 </View>
 

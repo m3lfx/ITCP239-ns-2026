@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View } from "react-native";
 
 import HomeNavigator from "./HomeNavigator";
+import CartNavigator from "./CartNavigator";
 import { Ionicons } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
@@ -36,7 +37,7 @@ const Main = () => {
 
             <Tab.Screen
                 name="Cart Screen"
-                component={HomeNavigator}
+                component={CartNavigator}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color }) => {
