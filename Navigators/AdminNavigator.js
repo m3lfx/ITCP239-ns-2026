@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 // import Orders from "../Screens/Admin/Orders"
 import Products from "../Screeens/Admin/Products";
 import ProductForm from "../Screeens/Admin/ProductForm";
-// import Categories from "../Screens/Admin/Categories"
+import Categories from "../Screeens/Admin/Categories"
 
 const Stack = createStackNavigator();
 
@@ -19,8 +19,8 @@ const AdminNavigator = () => {
                     title: "Products"
                 }}
             />
-            {/* <Stack.Screen name="Categories" component={Categories} />
-            <Stack.Screen name="Orders" component={Orders} /> */}
+            <Stack.Screen name="Categories" component={Categories} />
+            {/* <Stack.Screen name="Orders" component={Orders} /> */}
             <Stack.Screen name="ProductForm" component={ProductForm} />
         </Stack.Navigator>
     )

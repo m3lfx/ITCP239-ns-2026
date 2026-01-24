@@ -14,7 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native"
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
-
+import Toast from "react-native-toast-message"
 
 var { width } = Dimensions.get("window");
 
@@ -59,9 +59,9 @@ const ListItem = ({ item, index, deleteProduct }) => {
                         <EasyButton
                             medium
                             secondary
-                            // onPress={() => [navigation.navigate("ProductForm", { item }),
-                            // setModalVisible(false)
-                            // ]}
+                            onPress={() => [navigation.navigate("ProductForm", { item }),
+                            setModalVisible(false)
+                            ]}
                             title="Edit"
                         >
                             <Text style={styles.textStyle}>Edit</Text>
@@ -69,9 +69,9 @@ const ListItem = ({ item, index, deleteProduct }) => {
                         <EasyButton
                             medium
                             danger
-                            // onPress={() => [
-                            //     deleteProduct(item.id),
-                            //     setModalVisible(false)]}
+                            onPress={() => [
+                                deleteProduct(item.id),
+                                setModalVisible(false)]}
                             title="delete"
                         >
                             <Text style={styles.textStyle}>Delete</Text>

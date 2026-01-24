@@ -21,7 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
 import { useNavigation } from "@react-navigation/native"
-
+import Toast from "react-native-toast-message"
 var { height, width } = Dimensions.get("window")
 
 const Products = (props) => {
@@ -73,6 +73,12 @@ const Products = (props) => {
             .then((res) => {
                 const products = productFilter.filter((item) => item.id !== id)
                 setProductFilter(products)
+                Toast.show({
+                    topOffset: 60,
+                    type: "success",
+                    text1: "Product Deleted",
+                    text2: ""
+                });
             })
             .catch((error) => console.log(error));
     }
@@ -140,7 +146,7 @@ const Products = (props) => {
                 <EasyButton
                     secondary
                     medium
-                // onPress={() => navigation.navigate("Categories")}
+                    onPress={() => navigation.navigate("Categories")}
                 >
                     <Ionicons name="add-outline" size={18} color="white" />
                     <Text style={styles.buttonText}>Categories</Text>
