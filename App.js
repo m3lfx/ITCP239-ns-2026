@@ -7,19 +7,22 @@ import Main from './Navigators/Main';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Toast from 'react-native-toast-message';
+import Auth from './Context/Store/Auth';
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
+    <Auth>
+      <Provider store={store}>
+        <NavigationContainer>
 
-        <Header />
-        {/* <ProductContainer /> */}
-        <Main />
-        <Toast />
+          <Header />
+          {/* <ProductContainer /> */}
+          <Main />
+          <Toast />
 
-      </NavigationContainer>
-    </Provider>
+        </NavigationContainer>
+      </Provider>
+    </Auth>
   );
 }
 

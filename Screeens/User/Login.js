@@ -5,12 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import FormContainer from "../../Shared/FormContainer";
 
-// import AuthGlobal from '../../Context/Store/AuthGlobal'
-// import { loginUser } from '../../Context/Actions/Auth.actions'
+import AuthGlobal from '../../Context/Store/AuthGlobal'
+import { loginUser } from '../../Context/Actions/Auth.actions'
 import Input from "../../Shared/Input";
 
 const Login = (props) => {
-    // const context = useContext(AuthGlobal)
+    const context = useContext(AuthGlobal)
     const navigation = useNavigation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -24,16 +24,16 @@ const Login = (props) => {
         if (email === "" || password === "") {
             setError("Please fill in your credentials");
         } else {
-            // loginUser(user, context.dispatch);
+            loginUser(user, context.dispatch);
             console.log("error")
         }
     };
 
-    // useEffect(() => {
-    //     if (context.stateUser.isAuthenticated === true) {
-    //         navigation.navigate("User Profile")
-    //     }
-    // }, [context.stateUser.isAuthenticated])
+    useEffect(() => {
+        if (context.stateUser.isAuthenticated === true) {
+            navigation.navigate("User Profile")
+        }
+    }, [context.stateUser.isAuthenticated])
 
     AsyncStorage.getAllKeys((err, keys) => {
         AsyncStorage.multiGet(keys, (error, stores) => {
