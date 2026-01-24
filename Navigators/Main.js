@@ -7,6 +7,7 @@ import CartNavigator from "./CartNavigator";
 import UserNavigator from "./UserNavigator";
 import AdminNavigator from "./AdminNavigator";
 import { Ionicons } from "@expo/vector-icons";
+import CartIcon from "../Shared/CartIcon";
 const Tab = createBottomTabNavigator();
 
 const Main = () => {
@@ -51,7 +52,7 @@ const Main = () => {
                                 size={30}
 
                             />
-                            {/* <CartIcon /> */}
+                            <CartIcon />
                         </>
                     }
                 }}
