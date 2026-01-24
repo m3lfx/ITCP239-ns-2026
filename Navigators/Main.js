@@ -5,6 +5,7 @@ import { View } from "react-native";
 import HomeNavigator from "./HomeNavigator";
 import CartNavigator from "./CartNavigator";
 import UserNavigator from "./UserNavigator";
+import AdminNavigator from "./AdminNavigator";
 import { Ionicons } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
@@ -58,7 +59,7 @@ const Main = () => {
 
             <Tab.Screen
                 name="Admin"
-                component={HomeNavigator}
+                component={AdminNavigator}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color }) => {

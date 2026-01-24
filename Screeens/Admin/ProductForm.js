@@ -9,12 +9,13 @@ import {
 } from "react-native"
 import { Surface } from "react-native-paper"
 import { Picker } from "@react-native-picker/picker"
+import { Ionicons } from "@expo/vector-icons";
 
 import FormContainer from "../../Shared/FormContainer"
 import Input from "../../Shared/Input"
 import EasyButton from "../../Shared/StyledComponents/EasyButton"
 
-import Icon from "react-native-vector-icons/FontAwesome"
+
 import Toast from "react-native-toast-message"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import baseURL from "../../assets/common/baseurl"
@@ -202,7 +203,7 @@ const ProductForm = (props) => {
                 <TouchableOpacity
                     onPress={pickImage}
                     style={styles.imagePicker}>
-                    <Icon style={{ color: "white" }} name="camera" />
+                    <Ionicons style={{ color: "white" }} name="camera" />
                 </TouchableOpacity>
             </View>
             <View style={styles.label}>

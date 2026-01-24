@@ -10,7 +10,8 @@ import {
     Button,
     Modal
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome"
+import { Ionicons } from "@expo/vector-icons";
+
 import { useNavigation } from "@react-navigation/native"
 import EasyButton from "../../Shared/StyledComponents/EasyButton";
 
@@ -44,7 +45,7 @@ const ListItem = ({ item, index, deleteProduct }) => {
                                 right: 10
                             }}
                         >
-                            <Icon name="close" size={20} />
+                            <Ionicons name="close" size={20} />
                         </TouchableOpacity>
 
                         {/* <Button
@@ -81,7 +82,7 @@ const ListItem = ({ item, index, deleteProduct }) => {
             </Modal>
             <TouchableOpacity
                 onPress={() => {
-                    // navigation.navigate("Product Detail", { item })
+
                     navigation.navigate('Home', { screen: 'Product Detail', params: { item } })
                 }}
                 onLongPress={() => setModalVisible(true)}

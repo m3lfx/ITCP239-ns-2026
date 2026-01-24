@@ -115,8 +115,7 @@ const Products = (props) => {
                     setProductFilter();
                     setLoading(true);
                 }
-            },
-            [],
+            }, [],
         )
     )
     return (
